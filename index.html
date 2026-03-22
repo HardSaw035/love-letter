@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For Mrs. Lawrence-Khoza ❤️</title>
+
+<!-- Google Cursive Font -->
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;700&display=swap" rel="stylesheet">
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Dancing Script', cursive;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Blurred beach background */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url("nahoon.jpg") no-repeat center center fixed;
+    background-size: cover;
+    filter: blur(8px);
+    z-index: -2;
+}
+
+/* Overlay for text contrast */
+body::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.2);
+    z-index: -1;
+}
+
+.container {
+    text-align: center;
+    transition: opacity 1s;
+}
+
+h2 {
+    color: #800000;
+}
+
+.envelope {
+    width: 240px;
+    height: 150px;
+    background: #f5f5dc;
+    position: relative;
+    cursor: pointer;
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    transition: transform 0.3s;
+    border: 2px solid gold;
+    font-family: 'Dancing Script', cursive;
+}
+
+.envelope:hover {
+    transform: scale(1.05);
+}
+
+.flap {
+    width: 0;
+    height: 0;
+    border-left: 120px solid transparent;
+    border-right: 120px solid transparent;
+    border-bottom: 75px solid #e8dccb;
+    position: absolute;
+    top: -75px;
+    left: 0;
+    transform-origin: bottom;
+    transition: transform 1.2s ease;
+}
+
+.envelope-text {
+    position: absolute;
+    width: 100%;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #800000;
+    font-size: 20px;
+    font-weight: 500;
+    pointer-events: none;
+    font-family: 'Dancing Script', cursive;
+}
+
+.fullscreen-letter {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    box-sizing: border-box;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 1.5s ease;
+}
+
+.fullscreen-letter.show {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.letter-content {
+    max-width: 600px;
+    font-size: 20px;
+    line-height: 1.8;
+    color: #800000;
+    text-align: center;
+    border: 3px solid gold;
+    padding: 30px;
+    border-radius: 12px;
+    background: rgba(255,192,203,0.5);
+    backdrop-filter: blur(4px);
+    font-family: 'Dancing Script', cursive;
+}
+
+.cursor {
+    display: inline-block;
+    width: 2px;
+    background: #800000;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    50% { opacity: 0; }
+}
+</style>
+</head>
+<body>
+
+<div class="container" id="start">
+    <h2>Click the envelope 💌</h2>
+
+    <div class="envelope" onclick="openLetter()">
+        <div class="flap" id="flap"></div>
+        <div class="envelope-text">For My Lolla 💌</div>
+    </div>
+</div>
+
+<!-- Music -->
+<audio id="bgMusic" src="Risk It All [BF2_ipR1OI0].mp3"></audio>
+
+<div class="fullscreen-letter" id="letterScreen">
+    <div class="letter-content">
+        <span id="text"></span><span class="cursor"></span>
+    </div>
+</div>
+
+<script>
+const message = `My dearest Mrs. Lawrence-Khoza,<br><br>
+You are the softest part of my world,<br>
+the calm in my chaos,<br>
+and the love I never knew I needed so deeply.<br><br>
+Every moment with you<br>
+feels like something out of a dream<br>
+I never want to wake up from.<br><br>
+Loving you is the easiest<br>
+and most beautiful thing<br>
+I have ever known.<br><br>
+Forever Yours,<br>
+Enkosi-Kwandolwethu ❤️`;
+
+let i = 0;
+
+function typeWriter() {
+    if (i < message.length) {
+        if (message.substring(i, i+4) === '<br>') {
+            document.getElementById("text").innerHTML += '<br>';
+            i += 4;
+        } else {
+            document.getElementById("text").innerHTML += message.charAt(i);
+            i++;
+        }
+        setTimeout(typeWriter, 35);
+    }
+}
+
+function openLetter() {
+    document.getElementById("flap").style.transform = "rotateX(180deg)";
+
+    const music = document.getElementById("bgMusic");
+    music.volume = 0;
+    music.loop = true;      // <-- loop music
+    music.play();
+
+    let vol = 0;
+    const fade = setInterval(() => {
+        if (vol < 1) {
+            vol += 0.05;
+            music.volume = vol;
+        } else {
+            clearInterval(fade);
+        }
+    }, 200);
+
+    setTimeout(() => {
+        document.getElementById("start").style.opacity = "0";
+    }, 800);
+
+    setTimeout(() => {
+        document.getElementById("letterScreen").classList.add("show");
+        typeWriter();
+    }, 1500);
+}
+</script>
+
+</body>
+</html>
