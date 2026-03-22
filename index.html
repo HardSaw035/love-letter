@@ -145,21 +145,19 @@ h2 {
     padding: 30px;
     border-radius: 12px;
     overflow: hidden;
-    background: rgba(255,192,203,0.5); /* soft fallback for text */
+    background: rgba(255,192,203,0.5); /* semi-transparent fallback for text */
 }
 
-/* Background image of her */
-.letter-bg {
+/* Background image of her using pseudo-element */
+.letter-content::before {
+    content: "";
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    inset: 0;
     background: url("her.jpg") no-repeat center center;
     background-size: cover;
     filter: blur(5px);
     opacity: 0;
-    animation: fadeIn 2s forwards; /* fades in fully */
+    animation: fadeIn 2s forwards; /* fade in fully */
     z-index: -1;
 }
 
@@ -197,7 +195,6 @@ h2 {
 
 <div class="fullscreen-letter" id="letterScreen">
     <div class="letter-content">
-        <div class="letter-bg"></div> <!-- her picture fades in -->
         <span id="text"></span><span class="cursor"></span>
     </div>
 </div>
@@ -207,13 +204,14 @@ const message = `My dearest Mrs. Lawrence-Khoza,<br><br>
 You are the softest part of my world,<br>
 indawo yam yothando,<br>
 and the love I never knew I needed so deeply.<br><br>
-Every day together is a day i will always be grateful for, <br>
+Every day together is a day i will always be grateful for,<br>
 and i want to spend every tomorrow with you Langalam<br><br>
 Uthanda wena biyiyo yodwa into ebikhe yalula empilwen yam<br>
 and you were the most beautiful person<br>
 I have ever known.<br><br>
 Forever Yours Langalam,<br>
 Enkosi-Kwandolwethu ❤️`;
+
 let i = 0;
 
 function typeWriter() {
