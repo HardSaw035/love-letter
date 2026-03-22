@@ -143,8 +143,12 @@ h2 {
     border: 3px solid gold;
     padding: 30px;
     border-radius: 12px;
-    background: rgba(255,192,203,0.5);
-    backdrop-filter: blur(4px);
+
+    /* NEW: blurred picture of her as background */
+    background: url("her.jpg") no-repeat center center;
+    background-size: cover;
+    filter: blur(5px);         /* blur the picture */
+    backdrop-filter: blur(4px); /* keeps text readable */
 }
 
 .cursor {
@@ -186,13 +190,11 @@ const message = `My dearest Mrs. Lawrence-Khoza,<br><br>
 You are the softest part of my world,<br>
 indawo yam yothando,<br>
 and the love I never knew I needed so deeply.<br><br>
-Every moment with you<br>
-feels like something out of a dream<br>
-I never want to wake up from.<br><br>
-Ukthanda,<br>
-nokukhathalela<br>
-biyiyo yodwa into ekheyaza lula empilwen yam.<br>
-uyitshom yam, iSthandwa Sam, nomntwam<br><br>
+Every day together is a day i will always be grateful for, <br>
+and i want to spend every tomorrow with you Langalam<br><br>
+Uthanda wena biyiyo yodwa into ebikhe yalula empilwen yam<br>
+and you were the most beautiful person<br>
+I have ever known.<br><br>
 Forever Yours Langalam,<br>
 Enkosi-Kwandolwethu ❤️`;
 
@@ -216,13 +218,13 @@ function openLetter() {
 
     const music = document.getElementById("bgMusic");
     music.loop = true;
-    music.currentTime = 30; // start in middle of song
-    music.volume = 0;
+    music.currentTime = 30; // start mid-song
+    music.volume = 0.01;    // tiny volume so browser allows play
 
     music.play().then(() => {
-        let vol = 0;
+        let vol = 0.01;
         const fade = setInterval(() => {
-            if (vol < 0.4) { // softer
+            if (vol < 0.4) {   // softer volume
                 vol += 0.01;
                 music.volume = vol;
             } else {
@@ -231,10 +233,7 @@ function openLetter() {
         }, 200);
     }).catch(err => console.log("Audio blocked:", err));
 
-    setTimeout(() => {
-        document.getElementById("start").style.opacity = "0";
-    }, 800);
-
+    setTimeout(() => { document.getElementById("start").style.opacity = "0"; }, 800);
     setTimeout(() => {
         document.getElementById("letterScreen").classList.add("show");
         typeWriter();
