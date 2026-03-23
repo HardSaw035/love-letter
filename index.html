@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Meet Us</title>
+<title>Meet - Us</title>
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
 <style>
 body {
@@ -22,7 +22,7 @@ body {
   z-index: -1;
 }
 
-/* Landing */
+/* Landing Page */
 .landing {
   display: flex;
   justify-content: space-around;
@@ -31,28 +31,42 @@ body {
 }
 
 .person {
-  text-align: center;
-  cursor: pointer;
-}
-
-.person img {
+  position: relative;
   width: 220px;
   height: 220px;
-  object-fit: cover;
-  border-radius: 20px;
+  cursor: pointer;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.photo-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
   filter: blur(6px);
-  transition: 0.4s;
+  transition: transform 0.5s ease, filter 0.5s ease;
+  border-radius: 20px;
+  z-index: 0;
 }
 
-.person:hover img {
-  filter: blur(2px);
-}
-
-.name {
-  margin-top: 10px;
+.person .name {
+  position: relative;
+  z-index: 1;
   font-size: 28px;
   color: maroon;
   font-family: 'Great Vibes', cursive;
+  text-align: center;
+}
+
+.person:hover .photo-bg {
+  transform: scale(1.05) translateY(-5px);
+  filter: blur(3px);
 }
 
 /* Profile View */
@@ -122,12 +136,12 @@ body {
 <!-- Landing -->
 <div class="landing" id="landing">
   <div class="person" onclick="openProfile('person1')">
-    <img src="person1.jpg">
+    <div class="photo-bg" style="background-image: url('person1.jpg');"></div>
     <div class="name">Enkosi-Kwandolwethu</div>
   </div>
 
   <div class="person" onclick="openProfile('person2')">
-    <img src="person2.jpg">
+    <div class="photo-bg" style="background-image: url('person2.jpg');"></div>
     <div class="name">Luyanda</div>
   </div>
 </div>
@@ -140,6 +154,10 @@ body {
   <div class="letter" id="letter"></div>
 </div>
 
+<audio autoplay loop>
+  <source src="your-music.mp3" type="audio/mpeg">
+</audio>
+
 <script>
 function openProfile(person) {
   document.getElementById('landing').style.display = 'none';
@@ -150,7 +168,7 @@ function openProfile(person) {
       <div class="id-top">
         <img src="person1.jpg">
         <div class="id-text">
-          Name: Enkosi-Kwandolwethu💌<br>
+          Name: Enkosi-Kwandolwethu 💌<br>
           Loves: Luyanda<br>
           Status: Taken ❤️<br>
           Since: Always
@@ -159,9 +177,9 @@ function openProfile(person) {
     `;
 
     document.getElementById('letter').innerHTML = `
-      I never thought something this soft could exist until I met you...<br><br>
-      You changed the way I see everything, even the quiet moments feel full now.<br><br>
-      If I had to choose again, it would still be you. Always you.
+      I still remember the first moment I realized you weren’t just someone I liked...<br><br>
+      Every quiet moment became meaningful because it was with you.<br><br>
+      I would choose you again, today, tomorrow, forever.
     `;
   }
 
@@ -170,7 +188,7 @@ function openProfile(person) {
       <div class="id-top">
         <img src="person2.jpg">
         <div class="id-text">
-          Name: Luyanda💌<br>
+          Name: Luyanda 💌<br>
           Loves: Enkosi-Kwandolwethu<br>
           Status: Yours ❤️<br>
           Since: The beginning
@@ -180,17 +198,12 @@ function openProfile(person) {
 
     document.getElementById('letter').innerHTML = `
       Somehow, you became my favorite part of every day...<br><br>
-      You make everything feel lighter, softer, better.<br><br>
-      I didn't just fall for you... I found home in you.
+      You make every moment softer and brighter.<br><br>
+      I didn’t just fall for you—I found my home in you.
     `;
   }
 }
 
 function goBack() {
   document.getElementById('landing').style.display = 'flex';
-  document.getElementById('profile').style.display = 'none';
-}
-</script>
-
-</body>
-</html>
+  document.getElementById('profile'
