@@ -2,256 +2,193 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>For Mrs. Lawrence-Khoza ❤️</title>
-
-<!-- Google Cursive Font -->
-<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;700&display=swap" rel="stylesheet">
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meet Us</title>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
 <style>
 body {
-    margin: 0;
-    font-family: 'Dancing Script', cursive;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    overflow: hidden;
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  overflow: hidden;
 }
 
-/* Blurred Nahoon Beach background */
-body::before {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: url("nahoon.jpg") no-repeat center center fixed;
-    background-size: cover;
-    filter: blur(8px);
-    z-index: -3;
+/* Background */
+.background {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: url('nahoon.jpg') center/cover no-repeat;
+  filter: blur(8px);
+  z-index: -1;
 }
 
-/* Overlay for contrast */
-body::after {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.2);
-    z-index: -2;
+/* Landing */
+.landing {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 100vh;
 }
 
-/* Waves */
-.waves {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 200%;
-    height: 20%;
-    background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.15) 10%, transparent 11%),
-                radial-gradient(circle at 25% 60%, rgba(255,255,255,0.15) 10%, transparent 11%);
-    background-size: 50px 50px;
-    animation: waveMove 8s linear infinite;
-    z-index: -1;
+.person {
+  text-align: center;
+  cursor: pointer;
 }
 
-@keyframes waveMove {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
+.person img {
+  width: 220px;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 20px;
+  filter: blur(6px);
+  transition: 0.4s;
 }
 
-.container {
-    text-align: center;
-    transition: opacity 1s;
+.person:hover img {
+  filter: blur(2px);
 }
 
-h2 {
-    color: #800000;
+.name {
+  margin-top: 10px;
+  font-size: 28px;
+  color: maroon;
+  font-family: 'Great Vibes', cursive;
 }
 
-.envelope {
-    width: 240px;
-    height: 150px;
-    background: #f5f5dc;
-    position: relative;
-    cursor: pointer;
-    border-radius: 10px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-    transition: transform 0.3s;
-    border: 2px solid gold;
+/* Profile View */
+.profile {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
 }
 
-.envelope:hover {
-    transform: scale(1.05);
+.id-card {
+  background: #fff5f7;
+  padding: 20px;
+  border-radius: 20px;
+  width: 300px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
 }
 
-.flap {
-    width: 0;
-    height: 0;
-    border-left: 120px solid transparent;
-    border-right: 120px solid transparent;
-    border-bottom: 75px solid #e8dccb;
-    position: absolute;
-    top: -75px;
-    left: 0;
-    transform-origin: bottom;
-    transition: transform 1.2s ease;
+.id-top {
+  display: flex;
+  gap: 15px;
 }
 
-.envelope-text {
-    position: absolute;
-    width: 100%;
-    top: 55%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    color: #800000;
-    font-size: 20px;
-    font-weight: 500;
+.id-top img {
+  width: 100px;
+  height: 100px;
+  border-radius: 15px;
+  object-fit: cover;
 }
 
-.fullscreen-letter {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 40px;
-    box-sizing: border-box;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 1.5s ease;
+.id-text {
+  font-family: 'Great Vibes', cursive;
+  color: maroon;
+  font-size: 18px;
 }
 
-.fullscreen-letter.show {
-    opacity: 1;
-    pointer-events: all;
+.letter {
+  background: #fff;
+  padding: 30px;
+  border-radius: 20px;
+  width: 400px;
+  font-family: 'Great Vibes', cursive;
+  color: maroon;
+  font-size: 22px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
 }
 
-.letter-content {
-    position: relative;
-    max-width: 600px;
-    font-size: 20px;
-    line-height: 1.8;
-    color: #800000;
-    text-align: center;
-    border: 3px solid gold;
-    padding: 30px;
-    border-radius: 12px;
-    overflow: hidden;
-    background: rgba(255,192,203,0.5); /* semi-transparent fallback for text */
-}
-
-/* Background image of her using pseudo-element */
-.letter-content::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: url("her.jpg") no-repeat center center;
-    background-size: cover;
-    filter: blur(5px);
-    opacity: 0;
-    animation: fadeIn 2s forwards; /* fade in fully */
-    z-index: -1;
-}
-
-@keyframes fadeIn {
-    to { opacity: 1; }
-}
-
-.cursor {
-    display: inline-block;
-    width: 2px;
-    background: #800000;
-    animation: blink 1s infinite;
-}
-
-@keyframes blink {
-    50% { opacity: 0; }
+.back {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  cursor: pointer;
+  font-size: 18px;
+  color: maroon;
 }
 </style>
 </head>
 <body>
 
-<!-- Waves -->
-<div class="waves"></div>
+<div class="background"></div>
 
-<div class="container" id="start">
-    <h2>Click the envelope 💌</h2>
-    <div class="envelope" onclick="openLetter()">
-        <div class="flap" id="flap"></div>
-        <div class="envelope-text">For My Lola 💌</div>
-    </div>
+<!-- Landing -->
+<div class="landing" id="landing">
+  <div class="person" onclick="openProfile('person1')">
+    <img src="person1.jpg">
+    <div class="name">Enkosi-Kwandolwethu</div>
+  </div>
+
+  <div class="person" onclick="openProfile('person2')">
+    <img src="person2.jpg">
+    <div class="name">Luyanda</div>
+  </div>
 </div>
 
-<!-- Music -->
-<audio id="bgMusic" src="Risk It All [BF2_ipR1OI0].mp3"></audio>
+<!-- Profile -->
+<div class="profile" id="profile">
+  <div class="back" onclick="goBack()">← Back</div>
 
-<div class="fullscreen-letter" id="letterScreen">
-    <div class="letter-content">
-        <span id="text"></span><span class="cursor"></span>
-    </div>
+  <div class="id-card" id="idCard"></div>
+  <div class="letter" id="letter"></div>
 </div>
 
 <script>
-const message = `My dearest Mrs. Lawrence-Khoza,<br><br>
-You are the softest part of my world,<br>
-indawo yam yothando,<br>
-and the love I never knew I needed so deeply.<br><br>
-Every day together is a day i will always be grateful for,<br>
-and i want to spend every tomorrow with you Langalam<br><br>
-Uthanda wena biyiyo yodwa into ebikhe yalula empilwen yam<br>
-and you were the most beautiful person<br>
-I have ever known.<br><br>
-Forever Yours Langalam,<br>
-Enkosi-Kwandolwethu ❤️`;
+function openProfile(person) {
+  document.getElementById('landing').style.display = 'none';
+  document.getElementById('profile').style.display = 'flex';
 
-let i = 0;
+  if(person === 'person1') {
+    document.getElementById('idCard').innerHTML = `
+      <div class="id-top">
+        <img src="person1.jpg">
+        <div class="id-text">
+          Name: Enkosi-Kwandolwethu💌<br>
+          Loves: Luyanda<br>
+          Status: Taken ❤️<br>
+          Since: Always
+        </div>
+      </div>
+    `;
 
-function typeWriter() {
-    if (i < message.length) {
-        if (message.substring(i, i+4) === '<br>') {
-            document.getElementById("text").innerHTML += '<br>';
-            i += 4;
-        } else {
-            document.getElementById("text").innerHTML += message.charAt(i);
-            i++;
-        }
-        setTimeout(typeWriter, 70); // slower typing
-    }
+    document.getElementById('letter').innerHTML = `
+      I never thought something this soft could exist until I met you...<br><br>
+      You changed the way I see everything, even the quiet moments feel full now.<br><br>
+      If I had to choose again, it would still be you. Always you.
+    `;
+  }
+
+  if(person === 'person2') {
+    document.getElementById('idCard').innerHTML = `
+      <div class="id-top">
+        <img src="person2.jpg">
+        <div class="id-text">
+          Name: Luyanda💌<br>
+          Loves: Enkosi-Kwandolwethu<br>
+          Status: Yours ❤️<br>
+          Since: The beginning
+        </div>
+      </div>
+    `;
+
+    document.getElementById('letter').innerHTML = `
+      Somehow, you became my favorite part of every day...<br><br>
+      You make everything feel lighter, softer, better.<br><br>
+      I didn't just fall for you... I found home in you.
+    `;
+  }
 }
 
-function openLetter() {
-    document.getElementById("flap").style.transform = "rotateX(180deg)";
-
-    const music = document.getElementById("bgMusic");
-    music.loop = true;
-    music.currentTime = 30; // start mid-song
-    music.volume = 0.01;    // tiny volume so browser allows play
-
-    music.play().then(() => {
-        let vol = 0.01;
-        const fade = setInterval(() => {
-            if (vol < 0.4) {   // softer volume
-                vol += 0.01;
-                music.volume = vol;
-            } else {
-                clearInterval(fade);
-            }
-        }, 200);
-    }).catch(err => console.log("Audio blocked:", err));
-
-    setTimeout(() => { document.getElementById("start").style.opacity = "0"; }, 800);
-    setTimeout(() => {
-        document.getElementById("letterScreen").classList.add("show");
-        typeWriter();
-    }, 1500);
+function goBack() {
+  document.getElementById('landing').style.display = 'flex';
+  document.getElementById('profile').style.display = 'none';
 }
 </script>
 
